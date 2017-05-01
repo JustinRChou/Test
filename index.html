@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+        .divCal {
+            width: 350px;
+            min-height:70px;
+            /*height: 70px;*/
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+    <script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("Text", ev.target.id);
+}
+
+function drop(ev) {
+        var tar = ev.target;
+        if (tar.parentNode.id !== "") {
+            tar = tar.parentNode;
+        }
+        var count = tar.getAttribute('data-count');
+        var maxCount = tar.getAttribute('data-max-count');
+        if (maxCount < count) {
+            alert("Max Event");
+            return false;
+        }
+        alert(count);
+        tar.setAttribute('data-count', ++count); 
+        var data = ev.dataTransfer.getData("Text");
+        var oldParent = ev.currentTarget;
+   
+        var abc = document.getElementById(data);
+        var parentID = abc.getAttribute('data-parent');
+        alert(parentID);
+        var oldParent = document.getElementById(parentID);
+        if (oldParent != null) {
+            alert(oldParent.className);
+            if (oldParent.className === "divCal") {
+                var b = oldParent.getAttribute('data-count');
+                alert(b);
+                oldParent.setAttribute('data-count',--b); 
+            }
+        }
+        abc.setAttribute('data-parent',tar.id); 
+        tar.appendChild(document.getElementById(data));
+    ev.preventDefault();
+}
+    </script>
+</head>
+<body>
+    <br>
+    <p id="drag1" draggable="true" ondragstart="drag(event)">This is a draggable paragraph. Drag this element into the rectangle.</p>
+    <div id="drag2" draggable="true" ondragstart="drag(event)">This is a draggable div. Drag this element into the rectangle.</div>
+    <div style="float:left;">
+        <h1>Calendar</h1>
+        <h2>1</h2>
+        <div id="div1" class="divCal" ondrop="drop(event)" ondragover="allowDrop(event)" data-count="0" data-max-count="3">
+           
+        </div>
+        <h2>2</h2>
+        <div id="div2" class="divCal" ondrop="drop(event)" ondragover="allowDrop(event)" data-count="0" data-max-count="3">
+     
+        </div>
+    </div>
+    <div style="float:right;">
+        <h1>Events</h1>
+        <div id="drag3" draggable="true" ondragstart="drag(event)">This is a draggable div. Drag this element into the rectangle.</div>
+        <div id="drag4" draggable="true" ondragstart="drag(event)">This is a draggable div. Drag this element into the rectangle.</div>
+        <div id="drag5" draggable="true" ondragstart="drag(event)">This is a draggable div. Drag this element into the rectangle.</div>
+        <div id="drag6" draggable="true" ondragstart="drag(event)">This is a draggable div. Drag this element into the rectangle.</div>
+    </div>
+</body>
+</html>
