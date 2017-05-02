@@ -3,12 +3,50 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/jquery-1.12.4.js"></script>
+    <script src="Scripts/FileSaver.min.js"></script>
+
+    <script src="Scripts/jquery-ui-1.12.1.js"></script>
+
+    <script src="Scripts/jQuery.FileUpload/jquery.fileupload-jquery-ui.js"></script>
+
+    <script src="Scripts/jQuery.FileUpload/jquery.fileupload-ui.js"></script>
+    <script src="Scripts/jQuery.FileUpload/jquery.iframe-transport.js"></script>
+    <script src="Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
+    
     <script>
         $(document).ready(function () {
             alert("asdasd");
             $("#test").html("asdasdasdsadsd");
+            $('#fileupload').fileupload({
+                dataType: 'json',
+                add: function (e, data) {
+                    data.context = $('<p/>').text('Uploading...').appendTo(document.body);
+                },
+                done: function (e, data) {
+                    $.each(data.result.files, function (index, file) {
+                        $('<p/>').text(file.name).appendTo(document.body);
+                        //$('<p/>').text(file.).appendTo(document.body);
+                    });
+                }
+            });
+            $('#btnDisplay').click(function () {
+                //get file object
+                var file = document.getElementById('myFile').files[0];
+                alert(file);
+                if (file) {
+                    // create reader
+                    var reader = new FileReader();
+                    reader.readAsText(file);
+                    reader.onload = function (e) {
+                        // browser completed reading file - display it
+                        alert(e.target.result);
+                    };
+                }
+            });
         })
+
+
 
         function test() {
             $.getJSON("data/data.json", function (data) {
@@ -23,10 +61,22 @@
                 }).appendTo("body");
             });
         }
+
+        function saveSomthing() {
+            var object = new Object();
+            object.a = "1";
+            object.b = "2";
+            var file = new File(JSON.stringify(object), "hello world.json", { type: "application/json;charset=utf-8" });
+            saveAs(file);
+        }
     </script>
 </head>
 <body>
+    <input id="myFile" type="file" name="files2[]">
+    <input id="fileupload" type="file" name="files[]">
     <input type="button" value="Test" onclick="test()"/>
+    <input type="button" value="Upload" id="btnDisplay"/>
+    <input type="button" value="Save" onclick="saveSomthing()" />
     <div id="test"></div>
 </body>
 </html>
