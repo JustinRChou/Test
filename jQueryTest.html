@@ -1,6 +1,19 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <style>
+        .divCal {
+            width: 400px;
+            min-height: 70px;
+            /*height: 70px;*/
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+
+        .row {
+            min-height: 70px;
+        }
+    </style>
     <meta charset="utf-8" />
     <title></title>
     <script src="Scripts/jquery-1.12.4.js"></script>
@@ -13,23 +26,22 @@
     <script src="Scripts/jQuery.FileUpload/jquery.fileupload-ui.js"></script>
     <script src="Scripts/jQuery.FileUpload/jquery.iframe-transport.js"></script>
     <script src="Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
-    
+
+    <script src="Scripts/MyScripts/MonthParser.js"></script>
     <script>
         $(document).ready(function () {
-            alert("asdasd");
-            $("#test").html("asdasdasdsadsd");
-            $('#fileupload').fileupload({
-                dataType: 'json',
-                add: function (e, data) {
-                    data.context = $('<p/>').text('Uploading...').appendTo(document.body);
-                },
-                done: function (e, data) {
-                    $.each(data.result.files, function (index, file) {
-                        $('<p/>').text(file.name).appendTo(document.body);
-                        //$('<p/>').text(file.).appendTo(document.body);
-                    });
-                }
-            });
+            //$('#fileupload').fileupload({
+            //    dataType: 'json',
+            //    add: function (e, data) {
+            //        data.context = $('<p/>').text('Uploading...').appendTo(document.body);
+            //    },
+            //    done: function (e, data) {
+            //        $.each(data.result.files, function (index, file) {
+            //            $('<p/>').text(file.name).appendTo(document.body);
+            //            //$('<p/>').text(file.).appendTo(document.body);
+            //        });
+            //    }
+            //});
             $('#btnDisplay').click(function () {
                 //get file object
                 var file = document.getElementById('myFile').files[0];
@@ -40,12 +52,62 @@
                     reader.readAsText(file);
                     reader.onload = function (e) {
                         // browser completed reading file - display it
-                        alert(e.target.result);
+                        $('<p/>').text(e.target.result).appendTo(document.body);
                     };
                 }
             });
         })
 
+        //$(document).on('click', ".divCal", function () {
+        //    alert('click event triggered');
+        //}).on('ondragstart', ".divCal", function (event) {
+        //    alert('ondragstart event triggered');
+        //    }).on('ondrop', ".divCal", function (event) {
+        //        alert('ondrop triggered');
+        //    }).on('ondragover', ".divCal", function (event) {
+        //        alert('ondragover triggered');
+        //    });
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("Text", ev.target.id);
+        }
+
+        function drop(ev) {
+            var tar = ev.target;
+            if (tar.parentNode.id !== "") {
+                tar = tar.parentNode;
+            }
+            var count = tar.getAttribute('data-count');
+            var maxCount = tar.getAttribute('data-max-count');
+            if (maxCount < count) {
+                alert("Max Event");
+                return false;
+            }
+            alert(count);
+            tar.setAttribute('data-count', ++count);
+            var data = ev.dataTransfer.getData("Text");
+            var oldParent = ev.currentTarget;
+
+            var abc = document.getElementById(data);
+            var parentID = abc.getAttribute('data-parent');
+            alert(parentID);
+            var oldParent = document.getElementById(parentID);
+            if (oldParent != null) {
+                alert(oldParent.className);
+                if (oldParent.className === "divCal") {
+                    var b = oldParent.getAttribute('data-count');
+                    alert(b);
+                    oldParent.setAttribute('data-count', --b);
+                }
+            }
+            abc.setAttribute('data-parent', tar.id);
+            tar.appendChild(document.getElementById(data));
+            ev.preventDefault();
+        }
 
 
         function test() {
@@ -69,14 +131,86 @@
             var file = new File(JSON.stringify(object), "hello world.json", { type: "application/json;charset=utf-8" });
             saveAs(file);
         }
+
+        function bindDrag() {
+            //$(".divCal").on("ondragstart", function (event) {
+            //    alert("drag");
+            //});
+            //$(".divCal").on("ondrop", function (event) {
+            //    alert("drop");
+            //});
+            //$(".divCal").on("ondragover", function (event) {
+            //    alert("dragover");
+            //});
+            var asw = $(".divCal");
+            $.each(asw, function (a) {
+                $(asw[a]).droppable({
+                    drop: function (event, ui) {
+                        console.log(event);
+                        console.log(ui);
+                        var i = $(this);
+                        var o = $("#"+event.target.id);
+                        if (i.position().top > o.height() - i.height()) {
+                            o.height(o.height() + 10);
+                        }
+                        if (i.position().left > o.width() - i.width()) {
+                            o.width(o.width() + 10);
+                        }
+                    }
+                });
+                $(asw[a]).sortable(); 
+            });
+
+            asw = $(".what");
+            $.each(asw, function (a) {
+                $(asw[a]).draggable(
+                    {
+                        snap: true,
+                        containment: "div"
+
+                    }
+                )
+                $(asw[a]).sortable(); 
+                $(asw[a]).disableSelection();
+            });
+           
+        }
+
     </script>
 </head>
 <body>
     <input id="myFile" type="file" name="files2[]">
     <input id="fileupload" type="file" name="files[]">
-    <input type="button" value="Test" onclick="test()"/>
-    <input type="button" value="Upload" id="btnDisplay"/>
+    <input type="button" value="Test" onclick="test()" />
+    <input type="button" value="Test2" onclick="test2()" />
+    <input type="button" value="Test3" onclick="bindDrag()" />
+    <input type="button" value="Upload" id="btnDisplay" />
     <input type="button" value="Save" onclick="saveSomthing()" />
-    <div id="test"></div>
+    <div id="test" style="float:left;"></div>
+    <div style="float:left;">
+        <h1>Calendar</h1>
+        <h2>1</h2>
+        <div id="diva" class="divCal" ondrop="drop(event)" ondragover="allowDrop(event)" data-count="0" data-max-count="3">
+            dasd
+        </div>
+        <h2>2</h2>
+        <div id="divb" class="divCal" ondrop="drop(event)" ondragover="allowDrop(event)" data-count="0" data-max-count="3">
+            asdasdas
+        </div>
+    </div>
+    <div style="float:left;">
+        <h1>Events</h1>
+        <div id="drag3" draggable="true" ondragstart="drag(event)">This is a draggable div. Drag this element into the rectangle.</div>
+        <div id="drag4" draggable="true" ondragstart="drag(event)">This is a draggable div. Drag this element into the rectangle.</div>
+        <div id="drag5" draggable="true" ondragstart="drag(event)">This is a draggable div. Drag this element into the rectangle.</div>
+        <div id="drag6" draggable="true" ondragstart="drag(event)">This is a draggable div. Drag this element into the rectangle.</div>
+    </div>
+    <div style="float:left;">
+        <h1>Events</h1>
+        <div id="drag7" class="what">This is a draggable div. Drag this element into the rectangle.</div>
+        <div id="drag8" class="what">This is a draggable div. Drag this element into the rectangle.</div>
+        <div id="drag9" class="what">This is a draggable div. Drag this element into the rectangle.</div>
+        <div id="drag10" class="what">This is a draggable div. Drag this element into the rectangle.</div>
+    </div>
 </body>
 </html>

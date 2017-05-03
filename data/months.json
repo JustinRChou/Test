@@ -1,0 +1,59 @@
+﻿[
+  {
+    "Year": "20XX",
+    "MonthName": "April",
+    "Month": "04",
+    "Days": "9-30",
+    "StartDay": "Saturday"
+  },
+  {
+    "Year": "20XX",
+    "MonthName": "May",
+    "Month": "05",
+    "Days": "31",
+    "StartDay": "Sunday"
+  },
+  {
+    "Year": "20XX",
+    "MonthName": "June",
+    "Month": "06",
+    "Days": "30",
+    "StartDay": "Wednesday"
+  },
+  {
+    "Year": "20XX",
+    "MonthName": "July",
+    "Month": "07",
+    "Days": "31"
+  },
+  {
+    "Year": "20XX",
+    "MonthName": "August",
+    "Month": "08",
+    "Days": "31"
+  },
+  {
+    "Year": "20XX",
+    "MonthName": "September",
+    "Month": "09",
+    "Days": "30"
+  },
+  {
+    "Year": "20XX",
+    "MonthName": "October",
+    "Month": "10",
+    "Days": "31"
+  },
+  {
+    "Year": "20XX",
+    "MonthName": "November",
+    "Month": "11",
+    "Days": "30"
+  },
+  {
+    "Year": "20XX",
+    "MonthName": "December",
+    "Month": "12",
+    "Days": "24"
+  }
+]

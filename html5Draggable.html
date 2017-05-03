@@ -10,6 +10,7 @@
             border: 1px solid #aaaaaa;
         }
     </style>
+    <script src="Scripts/jquery-1.12.4.js"></script>
     <script>
 function allowDrop(ev) {
     ev.preventDefault();
@@ -50,22 +51,28 @@ function drop(ev) {
         abc.setAttribute('data-parent',tar.id); 
         tar.appendChild(document.getElementById(data));
     ev.preventDefault();
-}
+        }
+
+        function test() {
+            var asw = $(".divCal");
+            $.each(asw, function (a) { alert(a)});
+        }
     </script>
 </head>
 <body>
     <br>
+    <input type="button" value="Test" onclick="test()" />
     <p id="drag1" draggable="true" ondragstart="drag(event)">This is a draggable paragraph. Drag this element into the rectangle.</p>
     <div id="drag2" draggable="true" ondragstart="drag(event)">This is a draggable div. Drag this element into the rectangle.</div>
     <div style="float:left;">
         <h1>Calendar</h1>
         <h2>1</h2>
         <div id="div1" class="divCal" ondrop="drop(event)" ondragover="allowDrop(event)" data-count="0" data-max-count="3">
-           
+           dasd
         </div>
         <h2>2</h2>
         <div id="div2" class="divCal" ondrop="drop(event)" ondragover="allowDrop(event)" data-count="0" data-max-count="3">
-     
+     asdasdas
         </div>
     </div>
     <div style="float:right;">

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .test {
+        min-height:400px;
+        }
+    </style>
+    <script src="Scripts/jquery-1.12.4.js"></script>
+    <script src="Scripts/jquery-ui-1.12.1.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#a").droppable({ snap: true });
+            $("#b").droppable({ snap: true });
+            $("#c").draggable({ snap: true});
+            $("#d").draggable({ snap: true });
+        });
+
+    </script>
+</head>
+<body>
+    <div id="a" class="test">a</div>
+    <div id="b" class="test">b</div>
+    <div id="c">c</div>
+    <div id="d">d</div>
+</body>
+</html>
