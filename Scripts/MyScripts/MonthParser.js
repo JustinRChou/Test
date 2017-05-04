@@ -65,8 +65,18 @@ function test2() {
     });
 }
 
-function createDiv(str,abc) {
-    return '<div id="div' + abc+'" class="divCal" data-count="0" data-max-count="3">'+str+'</div>';
+function createDiv(str, abc) {
+    var tmp = '<div class="container-fluid marginBottom"><div class="col-6"><div class="row"><div class="span2 setupBorder"><div style="border-bottom: 2px solid black;">';
+    tmp += str;
+    tmp += '</div><div id="">Data here asdasd asdasdasd</div></div>';
+
+
+    tmp += ' <div class="span10 divCal" id="div' + abc +'" style="height:200px;border: 2px solid black;width:80%;" data-count="0" data-max-count="3" >';
+    tmp += ' </div> </div> </div> </div>';     
+                
+                   
+
+    return tmp;
 }
 
 function formatDay(day) {

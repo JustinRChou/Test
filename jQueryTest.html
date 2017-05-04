@@ -1,6 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap-grid.css" rel="stylesheet" />
     <style>
         .divCal {
             width: 400px;
@@ -13,9 +18,20 @@
         .row {
             min-height: 70px;
         }
+
+
+        .setupBorder {
+            height: 200px;
+            width: 20%;
+            border-left: 2px solid black;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+
+        .marginBottom {
+            margin-bottom: 20px;
+        }
     </style>
-    <meta charset="utf-8" />
-    <title></title>
     <script src="Scripts/jquery-1.12.4.js"></script>
     <script src="Scripts/FileSaver.min.js"></script>
 
@@ -146,16 +162,16 @@
             $.each(asw, function (a) {
                 $(asw[a]).droppable({
                     drop: function (event, ui) {
-                        console.log(event);
-                        console.log(ui);
-                        var i = $(this);
-                        var o = $("#"+event.target.id);
-                        if (i.position().top > o.height() - i.height()) {
-                            o.height(o.height() + 10);
-                        }
-                        if (i.position().left > o.width() - i.width()) {
-                            o.width(o.width() + 10);
-                        }
+                        //console.log(event);
+                        //console.log(ui);
+                        //var i = $(this);
+                        //var o = $("#"+event.target.id);
+                        //if (i.position().top > o.height() - i.height()) {
+                        //    o.height(o.height() + 10);
+                        //}
+                        //if (i.position().left > o.width() - i.width()) {
+                        //    o.width(o.width() + 10);
+                        //}
                     }
                 });
                 $(asw[a]).sortable(); 
@@ -167,7 +183,6 @@
                     {
                         snap: true,
                         containment: "div"
-
                     }
                 )
                 $(asw[a]).sortable(); 
@@ -186,7 +201,7 @@
     <input type="button" value="Test3" onclick="bindDrag()" />
     <input type="button" value="Upload" id="btnDisplay" />
     <input type="button" value="Save" onclick="saveSomthing()" />
-    <div id="test" style="float:left;"></div>
+    <div id="test" class="container" style="float:left;"></div>
     <div style="float:left;">
         <h1>Calendar</h1>
         <h2>1</h2>
