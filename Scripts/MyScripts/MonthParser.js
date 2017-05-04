@@ -1,8 +1,19 @@
 ﻿'use strict'
 
+function UrlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status != 404;
+}
+
 function test2() {
     var abc = 0;
-    $.getJSON("../data/months.json", function (data) {
+    var path = "../data/months.json";
+    if (!UrlExists(path)) {
+        path = "../Test/data/months.json";
+    }
+    $.getJSON(path, function (data) {
         var str = "", abc=0;
         $.each(data, function (obj) {
             var days = data[obj].Days;
