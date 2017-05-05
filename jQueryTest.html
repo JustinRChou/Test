@@ -42,8 +42,9 @@
     <script src="Scripts/jQuery.FileUpload/jquery.fileupload-ui.js"></script>
     <script src="Scripts/jQuery.FileUpload/jquery.iframe-transport.js"></script>
     <script src="Scripts/jQuery.FileUpload/jquery.fileupload.js"></script>
-
+    <script src="Scripts/MyScripts/UrlTester.js"></script>
     <script src="Scripts/MyScripts/MonthParser.js"></script>
+    <script src="Scripts/MyScripts/EventPaser.js"></script>
     <script>
         $(document).ready(function () {
             //$('#fileupload').fileupload({
@@ -199,9 +200,19 @@
     <input type="button" value="Test" onclick="test()" />
     <input type="button" value="Test2" onclick="test2()" />
     <input type="button" value="Test3" onclick="bindDrag()" />
+    <input type="button" value="Load Event" onclick="loadEvents()" />
     <input type="button" value="Upload" id="btnDisplay" />
     <input type="button" value="Save" onclick="saveSomthing()" />
-    <div id="test" class="container" style="float:left;"></div>
+    <div  class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div id="test" class="col-6"></div>
+                <div id="event" class="col-6"></div>
+            </div>
+        </div>
+     
+    </div>
+   
     <div style="float:left;">
         <h1>Calendar</h1>
         <h2>1</h2>

@@ -1,12 +1,5 @@
 ﻿'use strict'
 
-function UrlExists(url) {
-    var http = new XMLHttpRequest();
-    http.open('HEAD', url, false);
-    http.send();
-    return http.status != 404;
-}
-
 function test2() {
     var abc = 0;
     var path = "../data/months.json";

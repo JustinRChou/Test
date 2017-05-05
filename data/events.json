@@ -1,0 +1,91 @@
+﻿[
+  {
+    "ID": "N-N-1",
+    "EventCount": 2,
+    "Type": "Temp",
+    "Person": "ABC",
+    "Name": "Some Name",
+    "SocialStats": {
+      "Charm": 1,
+      "Knowledge": 2
+    }
+  },
+  {
+    "ID": "N-N-2",
+    "EventCount": 1,
+    "Type": "Temp1",
+    "Person": "ABC",
+    "Name": "Some Name",
+    "SocialStats": {
+      "Charm": 1,
+      "Knowledge": 2
+    }
+  },
+  {
+    "ID": "N-N-3",
+    "EventCount": 2,
+    "Type": "Temp2",
+    "Person": "ABC",
+    "Name": "Some Name",
+    "SocialStats": {
+      "Charm": 1,
+      "Knowledge": 2
+    },
+    "Prereq": "N-N-1"
+  },
+  {
+    "ID": "N-N-4",
+    "EventCount": 0,
+    "Type": "Temp3",
+    "Person": "ABC",
+    "Name": "Some Name",
+    "SocialStats": {
+      "Charm": 1,
+      "Knowledge": 2
+    }
+  },
+  {
+    "ID": "N-N-5",
+    "EventCount": 2,
+    "Type": "Temp4",
+    "Person": "ABC",
+    "Name": "Some Name",
+    "SocialStats": {
+      "Charm": 1,
+      "Knowledge": 2
+    }
+  },
+  {
+    "ID": "N-N-6",
+    "EventCount": 2,
+    "Type": "Temp5",
+    "Person": "ABC",
+    "Name": "Some Name",
+    "SocialStats": {
+      "Charm": 1,
+      "Knowledge": 2
+    }
+  },
+  {
+    "ID": "N-N-7",
+    "EventCount": 2,
+    "Type": "Temp6",
+    "Person": "ABC",
+    "Name": "Some Name",
+    "SocialStats": {
+      "Charm": 1,
+      "Knowledge": 2
+    }
+  },
+  {
+    "ID": "N-N-8",
+    "EventCount": 2,
+    "Type": "Temp7",
+    "Person": "ABC",
+    "Name": "Some Name",
+    "SocialStats": {
+      "Charm": 1,
+      "Knowledge": 2
+    }
+  }
+]
